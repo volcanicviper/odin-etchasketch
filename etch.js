@@ -7,3 +7,11 @@ for (var i = 0; i < 256; ++i) {
 }
 
 container.appendChild(fragment);
+
+const cells = container.querySelectorAll(":scope > div");
+
+cells.forEach((item) => {
+    item.addEventListener("mouseover", (event) => { 
+        event.target.style.backgroundColor = "orange";
+    });
+});
