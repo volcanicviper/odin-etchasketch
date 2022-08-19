@@ -11,7 +11,7 @@ function createGrid(size) {
    container.appendChild(fragment);
 }
 
-createGrid(16);
+createGrid(99);
 let cells = container.querySelectorAll("div");
 
 button.addEventListener("click", (event) => {
