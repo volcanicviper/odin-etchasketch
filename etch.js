@@ -6,27 +6,23 @@ function createGrid(size) {
     container.style.setProperty('--grid-size', size);
     for (var i = 0; i < size*size; ++i) {
         let div = document.createElement('div');
-        fragment.appendChild(div);
+        div.addEventListener("mouseover", (event) => { 
+            event.target.style.backgroundColor = randomColor();
+        });
+        container.appendChild(div);
    }
-   container.appendChild(fragment);
 }
 
-createGrid(99);
-let cells = container.querySelectorAll("div");
+createGrid(16);
 
 button.addEventListener("click", (event) => {
     let inputSize = prompt("Please input the grid size (i.e. 16 for 16x16)");
-    container.textContent = '';
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
     createGrid(inputSize);
-    cells = container.querySelectorAll("div");
 });
 
 function randomColor() {
     return "#" + Math.floor(Math.random()*16777215).toString(16);
 }
-
-cells.forEach((item) => {
-    item.addEventListener("mouseover", (event) => { 
-        event.target.style.backgroundColor = randomColor();
-    });
-});
