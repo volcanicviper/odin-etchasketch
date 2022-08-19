@@ -16,7 +16,10 @@ function createGrid(size) {
 createGrid(16);
 
 button.addEventListener("click", (event) => {
-    let inputSize = prompt("Please input the grid size (i.e. 16 for 16x16)");
+    let inputSize = 101;
+    while (inputSize > 100 || inputSize < 1) {
+     inputSize = prompt("Please input the grid size (1-100)");
+    }
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
