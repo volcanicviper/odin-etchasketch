@@ -1,12 +1,25 @@
+const button = document.querySelector('button');
 const container = document.getElementById('container');
 let fragment = document.createDocumentFragment();
 
-for (var i = 0; i < 256; ++i) {
-     div = document.createElement('div');
-    fragment.appendChild(div);
+function createGrid(size) {
+    container.style.setProperty('--grid-size', size);
+    for (var i = 0; i < size*size; ++i) {
+        let div = document.createElement('div');
+        fragment.appendChild(div);
+   }
+   container.appendChild(fragment);
 }
-container.appendChild(fragment);
-const cells = container.querySelectorAll("div");
+
+createGrid(16);
+let cells = container.querySelectorAll("div");
+
+button.addEventListener("click", (event) => {
+    let inputSize = prompt("Please input the grid size (i.e. 16 for 16x16)");
+    container.textContent = '';
+    createGrid(inputSize);
+    cells = container.querySelectorAll("div");
+});
 
 function randomColor() {
     return "#" + Math.floor(Math.random()*16777215).toString(16);
